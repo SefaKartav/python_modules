@@ -6,7 +6,7 @@
 #   By: sekartav <sekartav@student.42istanbul.com.tr+#+  +:+       +#+        #
 #                                                 +#+#+#+#+#+   +#+           #
 #   Created: 2026/03/06 21:20:56 by sekartav           #+#    #+#             #
-#   Updated: 2026/04/22 14:04:28 by sekartav          ###   ########.fr       #
+#   Updated: 2026/04/28 16:12:08 by sekartav          ###   ########.fr       #
 #                                                                             #
 # *************************************************************************** #
 
@@ -39,7 +39,6 @@ def simulate(plant: Plant) -> None:
     last_height = plant.height
     growth = round(last_height - firs_height, 1)
     print(f"Growth this week: {growth:.1f}cm")
-
 
 
 if __name__ == "__main__":

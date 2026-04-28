@@ -6,7 +6,7 @@
 #   By: sekartav <sekartav@student.42istanbul.com.tr+#+  +:+       +#+        #
 #                                                 +#+#+#+#+#+   +#+           #
 #   Created: 2026/03/06 20:59:47 by sekartav           #+#    #+#             #
-#   Updated: 2026/04/21 15:22:42 by sekartav          ###   ########.fr       #
+#   Updated: 2026/04/28 16:12:27 by sekartav          ###   ########.fr       #
 #                                                                             #
 # *************************************************************************** #
 
@@ -29,6 +29,7 @@ def ft_garden_data() -> None:
     rose.show()
     sunflower.show()
     cactus.show()
+
 
 if __name__ == "__main__":
     ft_garden_data()
