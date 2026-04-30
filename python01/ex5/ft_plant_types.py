@@ -6,7 +6,7 @@
 #   By: sekartav <sekartav@student.42istanbul.com.tr+#+  +:+       +#+        #
 #                                                 +#+#+#+#+#+   +#+           #
 #   Created: 2026/03/07 00:53:31 by sekartav           #+#    #+#             #
-#   Updated: 2026/04/28 18:19:59 by sekartav          ###   ########.fr       #
+#   Updated: 2026/04/30 20:15:39 by sekartav          ###   ########.fr       #
 #                                                                             #
 # *************************************************************************** #
 
@@ -24,7 +24,7 @@ class Plant:
 
     def set_age(self, a: int) -> None:
         if a >= 0:
-            self._days_age = a if a >= 0 else self._days_age
+            self._days_age = a
         
     def get_height(self) -> float:
         return self._height
@@ -65,7 +65,6 @@ class Tree(Plant):
         self.trunk_diameter = trunk_diameter
 
     def produce_shade(self) -> None:
-        # Subject örneğindeki format 
         print(f"Tree {self.name} now produces a shade of {self.get_height():.1f}cm long and "
                f"{self.trunk_diameter:.1f}cm wide.")
 
@@ -107,6 +106,7 @@ if __name__ == "__main__":
     oak.show()
     print("\n[asking the oak to produce shade]")
     oak.produce_shade()
+    oak.show()
 
     print("\n=== Vegetable ===")
     tomato = Vegetable("Tomato", 5.0, 10, "April")
