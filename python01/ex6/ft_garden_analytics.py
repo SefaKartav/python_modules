@@ -6,7 +6,7 @@
 #   By: sekartav <sekartav@student.42istanbul.com.tr+#+  +:+       +#+        #
 #                                                 +#+#+#+#+#+   +#+           #
 #   Created: 2026/04/30 15:08:50 by sekartav           #+#    #+#             #
-#   Updated: 2026/04/30 20:17:24 by sekartav          ###   ########.fr       #
+#   Updated: 2026/05/01 21:19:41 by sekartav          ###   ########.fr       #
 #                                                                             #
 # *************************************************************************** #
 
@@ -50,11 +50,11 @@ class Plant:
 
     @staticmethod
     def is_a_year(days: int) -> bool:
-        pass
+        return days > 365
 
     @classmethod
     def create_object(cls):
-        pass
+        return cls("Unkown plant", 0.0, 0)
 
 
 class Flower(Plant):
@@ -93,3 +93,10 @@ class Tree(Plant):
 
     def get_shade_count(self) -> int:
         return self._shade_count
+    
+
+def display_statistic(plant_obj) -> None:
+    print(f"Stats: {plant_obj.get_stats()}")
+    if isinstance(plant_obj, Tree):
+        print(f"{plant_obj.get_shade_count()} shade")
+        
