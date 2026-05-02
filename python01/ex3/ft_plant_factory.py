@@ -6,7 +6,7 @@
 #   By: sekartav <sekartav@student.42istanbul.com.tr+#+  +:+       +#+        #
 #                                                 +#+#+#+#+#+   +#+           #
 #   Created: 2026/03/06 22:16:06 by sekartav           #+#    #+#             #
-#   Updated: 2026/04/22 14:04:22 by sekartav          ###   ########.fr       #
+#   Updated: 2026/05/02 18:58:13 by sekartav          ###   ########.fr       #
 #                                                                             #
 # *************************************************************************** #
 
@@ -22,7 +22,7 @@ class Plant:
     def grow(self) -> None:
         self.height += 0.8
 
-    def show(self) -> None:
+    def show(self) -> str:
         return f"{self.name}: {self.height:.1f}cm, {self.days_age} days old"
 
 
