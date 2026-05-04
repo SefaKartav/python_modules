@@ -1,15 +1,3 @@
-# *************************************************************************** #
-#                                                                             #
-#                                                         :::      ::::::::   #
-#   ft_plant_types.py                                   :+:      :+:    :+:   #
-#                                                     +:+ +:+         +:+     #
-#   By: sekartav <sekartav@student.42istanbul.com.tr+#+  +:+       +#+        #
-#                                                 +#+#+#+#+#+   +#+           #
-#   Created: 2026/03/07 00:53:31 by sekartav           #+#    #+#             #
-#   Updated: 2026/05/02 18:49:38 by sekartav          ###   ########.fr       #
-#                                                                             #
-# *************************************************************************** #
-
 class Plant:
     def __init__(self, name: str, height: float, days_age: int) -> None:
         self.name = name
@@ -77,24 +65,24 @@ class Tree(Plant):
 
 
 class Vegetable(Plant):
-    def __init__(self, name: str, height: float, age:
-                 int, harvest_season: str) -> None:
+    def __init__(self, name: str, height: float, age: int,
+                 harvest_season: str) -> None:
         super().__init__(name, height, age)
         self.harvest_season = harvest_season
-        self.nutritional_value = 0
+        self.nutritional_value = 0.0
 
     def grow(self) -> None:
         super().grow()
-        self.nutritional_value += 1
+        self.nutritional_value += 0.5
 
     def age(self) -> None:
         super().age()
-        self.nutritional_value += 1
+        self.nutritional_value += 0.5
 
     def show(self) -> None:
         super().show()
         print(f"Harvest season: {self.harvest_season}")
-        print(f"Nutritional value: {self.nutritional_value}")
+        print(f"Nutritional value: {int(self.nutritional_value)}")
 
 
 if __name__ == "__main__":

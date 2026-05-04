@@ -1,15 +1,3 @@
-# *************************************************************************** #
-#                                                                             #
-#                                                         :::      ::::::::   #
-#   ft_garden_data.py                                   :+:      :+:    :+:   #
-#                                                     +:+ +:+         +:+     #
-#   By: sekartav <sekartav@student.42istanbul.com.tr+#+  +:+       +#+        #
-#                                                 +#+#+#+#+#+   +#+           #
-#   Created: 2026/03/06 20:59:47 by sekartav           #+#    #+#             #
-#   Updated: 2026/04/28 16:12:27 by sekartav          ###   ########.fr       #
-#                                                                             #
-# *************************************************************************** #
-
 class Plant:
     def __init__(self, name: str, height: int, age: int) -> None:
         self.name = name

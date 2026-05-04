@@ -1,15 +1,3 @@
-# *************************************************************************** #
-#                                                                             #
-#                                                         :::      ::::::::   #
-#   ft_garden_security.py                               :+:      :+:    :+:   #
-#                                                     +:+ +:+         +:+     #
-#   By: sekartav <sekartav@student.42istanbul.com.tr+#+  +:+       +#+        #
-#                                                 +#+#+#+#+#+   +#+           #
-#   Created: 2026/03/06 23:54:52 by sekartav           #+#    #+#             #
-#   Updated: 2026/04/28 16:21:35 by sekartav          ###   ########.fr       #
-#                                                                             #
-# *************************************************************************** #
-
 class Plant:
     def __init__(self, name: str, height: float, days_age: int) -> None:
         self.name = name
@@ -27,7 +15,7 @@ class Plant:
             self._height = new_height
 
     def _info(self) -> str:
-        return f"{self.name}: {self._height:1f}cm, {self._days_age} days old"
+        return f"{self.name}: {self._height:.1f}cm, {self._days_age} days old"
 
     def get_height(self) -> float:
         return self._height

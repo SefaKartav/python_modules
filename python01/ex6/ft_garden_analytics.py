@@ -1,18 +1,6 @@
-# *************************************************************************** #
-#                                                                             #
-#                                                         :::      ::::::::   #
-#   ft_garden_analytics.py                              :+:      :+:    :+:   #
-#                                                     +:+ +:+         +:+     #
-#   By: sekartav <sekartav@student.42istanbul.com.tr+#+  +:+       +#+        #
-#                                                 +#+#+#+#+#+   +#+           #
-#   Created: 2026/04/30 15:08:50 by sekartav           #+#    #+#             #
-#   Updated: 2026/05/02 18:46:48 by sekartav          ###   ########.fr       #
-#                                                                             #
-# *************************************************************************** #
-
 class Plant:
     class __Stats:
-        def __init__(self):
+        def __init__(self) -> None:
             self.__grow_count = 0
             self.__age_count = 0
             self.__show_count = 0
@@ -40,7 +28,7 @@ class Plant:
         return self._stats.get_stats()
 
     def grow(self) -> None:
-        self._height += 8.0
+        self._height += 0.8
         self._stats.add_grow_count()
 
     def age(self) -> None:
@@ -56,7 +44,7 @@ class Plant:
         return days > 365
 
     @classmethod
-    def create_object(cls):
+    def create_object(cls) -> 'Plant':
         return cls("Unknown plant", 0.0, 0)
 
 
@@ -68,7 +56,6 @@ class Flower(Plant):
 
     def bloom(self) -> None:
         self.is_blooming = True
-        print(f"{self._name} is blooming beautifully!")
 
     def show(self) -> None:
         super().show()
@@ -114,7 +101,7 @@ class Seed(Flower):
         print(f"Seeds: {self.seeds}")
 
 
-def display_statistic(plant_obj) -> None:
+def display_statistic(plant_obj: Plant) -> None:
     print(f"Stats: {plant_obj.get_stats()}")
     if isinstance(plant_obj, Tree):
         print(f"{plant_obj.get_shade_count()} shade")

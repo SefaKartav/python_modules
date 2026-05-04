@@ -1,15 +1,3 @@
-# *************************************************************************** #
-#                                                                             #
-#                                                         :::      ::::::::   #
-#   ft_plant_growth.py                                  :+:      :+:    :+:   #
-#                                                     +:+ +:+         +:+     #
-#   By: sekartav <sekartav@student.42istanbul.com.tr+#+  +:+       +#+        #
-#                                                 +#+#+#+#+#+   +#+           #
-#   Created: 2026/03/06 21:20:56 by sekartav           #+#    #+#             #
-#   Updated: 2026/04/28 16:12:08 by sekartav          ###   ########.fr       #
-#                                                                             #
-# *************************************************************************** #
-
 class Plant:
     def __init__(self, name: str, height: float, age_days: int) -> None:
         self.name = name
