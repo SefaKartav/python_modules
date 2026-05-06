@@ -15,7 +15,7 @@ def plant(name: str) -> None:
     print(f"Watering {name}: [OK]")
 
 
-def test():
+def test() -> None:
     print("=== Garden Watering System ===\n")
     print("Testing valid plants...")
     print("Opening watering system")
