@@ -12,8 +12,6 @@ def garden_operations(operation_number: int) -> None:
 
 
 def test_error_types() -> None:
-    print("=== Garden Error Types Demo ===")
-
     for i in range(5):
         print(f"Testing operation {i}...")
 
@@ -29,8 +27,8 @@ def test_error_types() -> None:
         except TypeError as e:
             print(f"Caught TypeError: {e}")
 
-    print("\nAll error types tested successfully!")
-
 
 if __name__ == "__main__":
+    print("=== Garden Error Types Demo ===")
     test_error_types()
+    print("\nAll error types tested successfully!")
