@@ -1,5 +1,6 @@
 import sys
 
+
 def main():
     print("=== Player Score Analytics ===")
 
@@ -18,7 +19,7 @@ def main():
         print("No scores provided. Usage: python3"
               "ft_score_analytics.py <score1> <score2> ...")
         return
-        
+
     total_players = len(score_list)
     total_score = sum(score_list)
     average_score = total_score / total_players
@@ -37,6 +38,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main() 
-
-
+    main()
