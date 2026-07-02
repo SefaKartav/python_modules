@@ -1,8 +1,8 @@
 import random
-import typing
 from typing import Generator
 
-def forever_event() -> Generator[tuple[str, str], None, None]:
+
+def gen_event() -> Generator[tuple[str, str], None, None]:
     players = ["Sefa", "Merve", "Nurettin", "Dondu", "Hakan",
                "Enes", "Metehan", "Eda", "Feyza", "Rabia", "Zeynep",
                "Emre", "Eren"]
@@ -17,19 +17,33 @@ def forever_event() -> Generator[tuple[str, str], None, None]:
         yield gen
 
 
-def wiper(event_list: list[tuple[str, str]]) -> Generator[tuple[str, str], None, None]:
-    random_index = random.randint(0, len(event_list) - 1)
-    item = event_list.pop(random_index)
-    yield item
+def consume_event(
+        event_list: list[tuple[str, str]],
+        ) -> Generator[tuple[str, str], None, None]:
+    while len(event_list) > 0:
+        random_index = random.randint(0, len(event_list) - 1)
+        item = event_list.pop(random_index)
+        yield item
+
 
 def main():
     print("=== Game Data Stream Processor ===")
 
-    fallow = forever_event()
+    fallow = gen_event()
 
     for i in range(1000):
         event = next(fallow)
         print(f"Event {i}: Player {event[0]} did action {event[1]}")
+
+    ten_event_list = []
+    for x in range(10):
+        ten_event_list.append(next(fallow))
+
+    print(f"Built list of 10 events: {ten_event_list}")
+
+    for y in consume_event(ten_event_list):
+        print(f"Got event from list: {y}")
+        print(f"Remains in list: {ten_event_list}")
 
 
 if __name__ == "__main__":
