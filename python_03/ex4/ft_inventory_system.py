@@ -48,7 +48,7 @@ def main():
     for i in new_dictionary:
         counter = new_dictionary[i]
         ratio = round((counter / item_count) * 100, 1)
-        print(f"Item {i} represent %{ratio}")
+        print(f"Item {i} represent {ratio}%")
 
     print(f"Item most abundant: {most_name} with quantity {most_item}")
     print(f"Item least abundant: {least_name} with quantity {least_item}")
