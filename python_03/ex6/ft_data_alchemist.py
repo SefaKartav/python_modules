@@ -8,6 +8,8 @@ def events():
     first_list = [name.capitalize() for name in try_list]
     second_list = [name for name in try_list if name[0].istitle()]
     list_score = {name: random.randint(0, 1000) for name in second_list}
+    if not list_score:
+        return
     score_average = sum(list_score.values()) / len(list_score)
     is_average = {
         name: score

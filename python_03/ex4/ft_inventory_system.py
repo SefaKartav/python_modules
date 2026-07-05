@@ -34,6 +34,8 @@ def main():
     print("=== Inventory System Analysis ===")
     args = sys.argv[1:]
     new_dictionary = scan_inventory(args)
+    if not new_dictionary:
+        return
     item_list = list(new_dictionary.keys())
     key_count = len(item_list)
     item_count = sum(new_dictionary.values())

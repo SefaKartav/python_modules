@@ -37,7 +37,7 @@ def main():
 
     ten_event_list = []
     for x in range(10):
-        ten_event_list.append(next(fallow))
+        ten_event_list += [next(fallow)]
 
     print(f"Built list of 10 events: {ten_event_list}")
 

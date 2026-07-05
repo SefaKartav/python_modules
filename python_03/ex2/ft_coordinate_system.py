@@ -17,7 +17,7 @@ def get_player_pos():
         for i in splits:
             new = i.strip()
             try:
-                coords.append(float(new))
+                coords += [float(new)]
             except ValueError as e:
                 print(f"Error on parameter '{i}': {e}")
                 error_alert = True

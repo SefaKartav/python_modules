@@ -10,7 +10,7 @@ def main():
     for i in scores:
         try:
             score = int(i)
-            score_list.append(score)
+            score_list += [score]
         except ValueError:
             print(f"Invalid parameter: `{i}`")
             return
@@ -31,10 +31,9 @@ def main():
     print(f"Total players: {total_players}")
     print(f"Total score: {total_score}")
     print(f"Average score: {average_score}")
-    print(f"Average score: {average_score}")
     print(f"High score: {high_score}")
     print(f"Low score: {low_score}")
-    print(f"Score rangte: {score_range}")
+    print(f"Score range: {score_range}")
 
 
 if __name__ == "__main__":
