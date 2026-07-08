@@ -28,8 +28,7 @@ def get_line(file_path: str) -> None:
     except Exception as i:
         print(f"Error opening file '{file_path}': {i}")
         return
-    
-    
+
     print("Transform data:")
     print("---\n")
     transformed_content = ""

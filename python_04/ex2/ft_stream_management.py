@@ -17,7 +17,8 @@ def get_line(file_path: str) -> None:
 
     except FileNotFoundError:
         print(f"[STDERR] Error opening file '{file_path}': "
-              f"[Errno 2] No such file or directory: '{file_path}'", file=sys.stderr)
+              f"[Errno 2] No such file or directory: "
+              f"'{file_path}'", file=sys.stderr)
         return
 
     except PermissionError:
@@ -26,10 +27,10 @@ def get_line(file_path: str) -> None:
         return
 
     except Exception as i:
-        print(f"[STDERR] Error opening file '{file_path}': {i}", file=sys.stderr)
+        print(f"[STDERR] Error opening file "
+              f"'{file_path}': {i}", file=sys.stderr)
         return
-    
-    
+
     print("Transform data:")
     print("---\n")
     transformed_content = ""
