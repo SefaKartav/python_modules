@@ -35,7 +35,7 @@ class NumericProcessor(DataProcessor):
 
         return False
 
-    def ingest(self, data:int | float |
+    def ingest(self, data: int | float |
                list[int | float]) -> None:
         if not self.validate(data):
             raise Exception("Improper numeric data")
@@ -99,7 +99,7 @@ class LogProcessor(DataProcessor):
     def ingest(self, data: dict[str, str] | list[dict[str, str]]) -> None:
         if not self.validate(data):
             raise Exception("Invalid log data provided")
-        
+
         if isinstance(data, list):
             for item in data:
                 self._queue += [(self._rank_counter, str(item))]
@@ -109,11 +109,16 @@ class LogProcessor(DataProcessor):
             self._rank_counter += 1
 
 
+class DataStream:
+    
+
+
+
 if __name__ == "__main__":
     testNumeric = NumericProcessor()
     testText = TextProcessor()
     testLog = LogProcessor()
-    
+
     print("=== Code Nexus - Data Processor ===\n")
     print("Testing Numeric Processor...")
 
@@ -132,7 +137,7 @@ if __name__ == "__main__":
     print("Extracting 3 values...")
     for _ in range(3):
         rank, val = testNumeric.output()
-        
+
         print(f"Numeric value {rank}: {val}")
 
     print("\nTesting Text Processor...")
