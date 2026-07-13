@@ -77,4 +77,73 @@ class TextProcessor(DataProcessor):
 
 class LogProcessor(DataProcessor):
     def validate(self, data: typing.Any) -> bool:
+        if isinstance(data, dict):
+            return len(data) > 0 and all(isinstance(x, str)
+                                         and isinstance(y, str)
+                                         for x, y in data.items())
         
+        if isinstance(data, list):
+            if len(data) == 0 :
+                return False
+            
+            for item in data:
+                if not isinstance(item, dict):
+                    return False
+                if not all(isinstance(x, str) and
+                           isinstance(y, str)
+                           for x, y in item.items()):
+                    return False
+            return True
+        return False
+        
+    def ingest(self, data: dict[str, str] | list[dict[str, str]]) -> None:
+        if not self.validate(data):
+            raise Exception("Invalid log data provided")
+        
+        if isinstance(data, list):
+            for item in data:
+                self._queue += [(self._rank_counter, str(item))]
+                self._rank_counter += 1
+        else:
+            self._queue += [(self._rank_counter, str(data))]
+            self._rank_counter += 1
+
+
+if __name__ == "__main__":
+    testNumeric = NumericProcessor()
+    testText = TextProcessor()
+    testLog = LogProcessor()
+    
+    print("=== Code Nexus - Data Processor ===\n")
+    print("Testing Numeric Processor...")
+
+    trying = testNumeric.validate(42)
+    trying1 = testNumeric.validate("Hello")
+    print(f"Trying to validate input '42': {trying}")
+    print(f"Trying to validate input 'Hello': {trying1}")
+    print("Test invalid ingestion of string 'foo' without prior validation:")
+    try:
+        testNumeric.ingest("foo")
+    except Exception as e:
+        print(f"Got exception: {e}")
+    num_data = [1, 2, 3, 4]
+    print(f"Processing data: {num_data}")
+    testNumeric.ingest(num_data)
+    print("Extracting 3 values...")
+    for _ in range(3):
+        rank, val = testNumeric.output()
+        
+        print(f"Numeric value {rank}: {val}")
+
+    print("\nTesting Text Processor...")
+    trying2 = testText.validate(42)
+    print(f"Trying to validate input '42: {trying2}'")
+    text_data = ["Hello", "Nexus", "World"]
+    testText.ingest(text_data)
+    print(f"Processing data: {text_data}")
+    print("Extracting 1 values...")
+    rank, val = testText.output()
+    print(f"Text value {rank}: {val}")
+
+    
+
