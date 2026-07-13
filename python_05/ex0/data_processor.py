@@ -35,20 +35,46 @@ class NumericProcessor(DataProcessor):
 
         return False
 
-
-    def ingest(self, data: int | float | list[int | float]) -> None:
+    def ingest(self, data:int | float |
+               list[int | float]) -> None:
         if not self.validate(data):
             raise Exception("Improper numeric data")
- 
+
         if isinstance(data, list):
             for item in data:
                 self._queue += [(self._rank_counter, str(item))]
                 self._rank_counter += 1
-    
+
         else:
             self._queue += [(self._rank_counter, str(data))]
             self._rank_counter += 1
-                
+
 
 class TextProcessor(DataProcessor):
+    def validate(self, data: typing.Any) -> bool:
+        if isinstance(data, str):
+            return True
 
+        if isinstance(data, list):
+            return len(data) > 0 and all(isinstance(x, str)
+                                         for x in data)
+
+        return False
+    
+    def ingest(self, data: str | list[str]) -> None:
+        if not self.validate(data):
+            raise Exception("Invalid text data provided")
+        
+        if isinstance(data, list):
+            for item in data:
+                self._queue += [(self._rank_counter, str(item))]
+                self._rank_counter += 1
+
+        else:
+            self._queue += [(self._rank_counter, str(data))]
+            self._rank_counter += 1
+
+
+class LogProcessor(DataProcessor):
+    def validate(self, data: typing.Any) -> bool:
+        
