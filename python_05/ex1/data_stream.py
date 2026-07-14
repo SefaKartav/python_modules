@@ -126,7 +126,8 @@ class DataStream:
                     break
 
             if not flag:
-                print(f"DataStream error - Can't process element in stream: {item}")
+                print(f"DataStream error - "
+                      f"Can't process element in stream: {item}")
 
     def print_processors_stats(self) -> None:
         print("== DataStream statistics ==")
@@ -137,11 +138,8 @@ class DataStream:
             name = proc.__class__.__name__.replace("Processor", " Processor")
             count = proc._rank_counter
             remaining = len(proc._queue)
-            print(f"{name}: total {count} items processed, " 
+            print(f"{name}: total {count} items processed, "
                   f"remaining {remaining} on processor")
-
-
-
 
 
 if __name__ == "__main__":
@@ -156,8 +154,10 @@ if __name__ == "__main__":
     batch = [
         'Hello world',
         [3.14, -1, 2.71],
-        [{'log_level': 'WARNING', 'log_message': 'Telnet access! Use ssh instead'},
-         {'log_level': 'INFO', 'log_message': 'User wil is connected'}],
+        [{'log_level': 'WARNING', 'log_message':
+          'Telnet access! Use ssh instead'},
+         {'log_level': 'INFO', 'log_message':
+          'User wil is connected'}],
         42,
         ['Hi', 'five']
     ]
@@ -173,12 +173,13 @@ if __name__ == "__main__":
     print("Send the same batch again")
     stream.process_stream(batch)
     stream.print_processors_stats()
-    print("\nConsume some elements from the data processors: Numeric 3, Text 2, Log 1")
-    for _ in range(3): testNumeric.output()
-    for _ in range(2): testText.output()
-    for _ in range(1): testLog.output()
+    print("\nConsume some elements from the data processors: "
+          "Numeric 3, Text 2, Log 1")
+    for _ in range(3):
+        testNumeric.output()
+    for _ in range(2):
+        testText.output()
+    for _ in range(1):
+        testLog.output()
 
     stream.print_processors_stats()
-
-
-    

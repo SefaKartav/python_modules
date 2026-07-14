@@ -138,7 +138,7 @@ if __name__ == "__main__":
     print("\nTesting Text Processor...")
     trying2 = testText.validate(42)
     print(f"Trying to validate input '42: {trying2}'")
-    text_data: list[str]= ["Hello", "Nexus", "World"]
+    text_data: list[str] = ["Hello", "Nexus", "World"]
     testText.ingest(text_data)
     print(f"Processing data: {text_data}")
     print("Extracting 1 values...")
@@ -149,9 +149,9 @@ if __name__ == "__main__":
     trying3 = testLog.validate("Hello")
     print(f"Trying to validate input 'Hello': {trying3}")
     log_data: list[dict[str, str]] = [{'log_level': 'NOTICE',
-                'log_message': 'Connection to server'},
-                {'log_level': 'ERROR',
-                 'log_message': 'Unauthorized access!!'}]
+                                       'log_message': 'Connection to server'},
+                                      {'log_level': 'ERROR',
+                                       'log_message': 'Unauthorized access!!'}]
     print(f"Processing data: {log_data}")
     testLog.ingest(log_data)
     print("Extracting 2 values...")
