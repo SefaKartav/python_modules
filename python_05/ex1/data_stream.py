@@ -111,10 +111,10 @@ class LogProcessor(DataProcessor):
 
 class DataStream:
     def __init__(self):
-        self._processors: list[DataProcessor]
+        self._processors: list[DataProcessor] = []
 
     def register_processor(self, proc: DataProcessor) -> None:
-        self._processor.append(proc)
+        self._processors.append(proc)
 
     def process_stream(self, stream: list[typing.Any]) -> None:
         for item in stream:
@@ -128,55 +128,57 @@ class DataStream:
             if not flag:
                 print(f"DataStream error - Can't process element in stream: {item}")
 
+    def print_processors_stats(self) -> None:
+        print("== DataStream statistics ==")
+        if not self._processors:
+            print("No processor found, no data\n")
+
+        for proc in self._processors:
+            name = proc.__class__.__name__.replace("Processor", " Processor")
+            count = proc._rank_counter
+            remaining = len(proc._queue)
+            print(f"{name}: total {count} items processed, " 
+                  f"remaining {remaining} on processor")
+
+
 
 
 
 if __name__ == "__main__":
     testNumeric = NumericProcessor()
+
+    print("=== Code Nexus - Data Stream ===\n")
+    print("\nInitialize Data Stream...")
+    stream = DataStream()
+    stream.print_processors_stats()
+    print("Registering Numeric Processor")
+    stream.register_processor(testNumeric)
+    batch = [
+        'Hello world',
+        [3.14, -1, 2.71],
+        [{'log_level': 'WARNING', 'log_message': 'Telnet access! Use ssh instead'},
+         {'log_level': 'INFO', 'log_message': 'User wil is connected'}],
+        42,
+        ['Hi', 'five']
+    ]
+
+    print(f"\nSend first batch of data on stream: {batch}")
+    stream.process_stream(batch)
+    stream.print_processors_stats()
+    print("\nRegistering other data processors")
     testText = TextProcessor()
     testLog = LogProcessor()
+    stream.register_processor(testText)
+    stream.register_processor(testLog)
+    print("Send the same batch again")
+    stream.process_stream(batch)
+    stream.print_processors_stats()
+    print("\nConsume some elements from the data processors: Numeric 3, Text 2, Log 1")
+    for _ in range(3): testNumeric.output()
+    for _ in range(2): testText.output()
+    for _ in range(1): testLog.output()
 
-    print("=== Code Nexus - Data Processor ===\n")
-    print("Testing Numeric Processor...")
+    stream.print_processors_stats()
 
-    trying = testNumeric.validate(42)
-    trying1 = testNumeric.validate("Hello")
-    print(f"Trying to validate input '42': {trying}")
-    print(f"Trying to validate input 'Hello': {trying1}")
-    print("Test invalid ingestion of string 'foo' without prior validation:")
-    try:
-        testNumeric.ingest("foo")
-    except Exception as e:
-        print(f"Got exception: {e}")
-    num_data = [1, 2, 3, 4]
-    print(f"Processing data: {num_data}")
-    testNumeric.ingest(num_data)
-    print("Extracting 3 values...")
-    for _ in range(3):
-        rank, val = testNumeric.output()
 
-        print(f"Numeric value {rank}: {val}")
-
-    print("\nTesting Text Processor...")
-    trying2 = testText.validate(42)
-    print(f"Trying to validate input '42: {trying2}'")
-    text_data = ["Hello", "Nexus", "World"]
-    testText.ingest(text_data)
-    print(f"Processing data: {text_data}")
-    print("Extracting 1 values...")
-    rank, val = testText.output()
-    print(f"Text value {rank}: {val}")
-
-    print("\nTesting Log Processor...")
-    trying3 = testLog.validate("Hello")
-    print(f"Trying to validate input 'Hello': {trying3}")
-    log_data = [{'log_level': 'NOTICE',
-                'log_message': 'Connection to server'},
-                {'log_level': 'ERROR',
-                 'log_message': 'Unauthorized access!!'}]
-    print(f"Processing data: {log_data}")
-    testLog.ingest(log_data)
-    print("Extracting 2 values...")
-    for _ in range(2):
-        rank, val = testLog.output()
-        print(f"Log entry {rank}: {val}")
+    
