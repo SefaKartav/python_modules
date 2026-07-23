@@ -38,3 +38,6 @@ class CreatureFactory(abc.ABC):
 class FlameFactory(CreatureFactory):
     def create_flame(self) -> Creature:
         return Flameling()
+    
+    def create_pyrodon(self) -> Creature:
+        return Pyrodon()
