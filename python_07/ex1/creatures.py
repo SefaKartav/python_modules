@@ -1,6 +1,7 @@
 from ex0.creatures import Creature
 from .capabilities import HealCapability, TransformCapability
 
+
 class Sproutling(Creature, HealCapability):
     def __init__(self):
         Creature.__init__(self, "Sproutling", "Grass")
@@ -31,6 +32,31 @@ class Shiftling(Creature, TransformCapability):
         return "Shiftling returns to normal."
 
 
-class Bloomelle(Sproutling):
+class Bloomelle(Creature, HealCapability):
     def __init__(self):
-        Sproutling(self, "Bloomelle", "Grassy/Fairy")
+        Creature.__init__(self, "Bloomelle", "Grass/Fairy")
+
+    def attack(self) -> str:
+        return "Bloomelle uses Petal Dance!"
+
+    def heal(self) -> str:
+        return "Bloomelle heals itself and others for a large amount"
+
+
+class Morphagon(Creature, TransformCapability):
+    def __init__(self):
+        Creature.__init__(self, "Morphagon", "Normal/Dragon")
+        TransformCapability.__init__(self)
+
+    def attack(self) -> str:
+        if self.is_transformed:
+            return "Morphagon unleashes a devastating morph strike!"
+        return "Morphagon attacks normally."
+
+    def transform(self) -> str:
+        self.is_transformed = True
+        return "Morphagon morphs into a dragonic battle form!"
+
+    def revert(self) -> str:
+        self.is_transformed = False
+        return "Morphagon stabilizes its form."
