@@ -1,7 +1,7 @@
 from .strategies import (
     BattleStrategy,
     NormalStrategy,
-    AggressiveStrategy,
+    AggrassiveStrategy,
     DefensiveStrategy,
     InvalidStrategyError
 )

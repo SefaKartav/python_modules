@@ -30,7 +30,7 @@ class NormalStrategy(BattleStrategy):
         print(creature.attack())
 
 
-class AggrasiveStrategy(BattleStrategy):
+class AggrassiveStrategy(BattleStrategy):
     def is_valid(self, creature: Creature) -> bool:
         return isinstance(creature, TransformCapability)
 
