@@ -9,7 +9,7 @@ from .strategies import (
 __all__ = [
     "BattleStrategy",
     "NormalStrategy",
-    "AggressiveStrategy",
+    "AggrassiveStrategy",
     "DefensiveStrategy",
     "InvalidStrategyError"
 ]

@@ -15,7 +15,7 @@ def test_heal(healingcreature: HealingCreatureFactory):
     print(evolved_creature.heal())
 
 
-def test_trans(transcreature: HealingCreatureFactory):
+def test_trans(transcreature: TransformCreatureFactory):
     print("base:")
     base_creature = transcreature.create_base()
     base_creature.describe()

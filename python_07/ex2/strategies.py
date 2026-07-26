@@ -40,6 +40,7 @@ class AggrassiveStrategy(BattleStrategy):
                 f"Invalid Creature '{creature.name}' "
                 f"for this aggrasive strategy"
             )
+        assert isinstance(creature, TransformCapability)
         print(creature.transform())
         print(creature.attack())
         print(creature.revert())
@@ -55,5 +56,6 @@ class DefensiveStrategy(BattleStrategy):
                 f"Invalid Creature '{creature.name}' "
                 f"for this defensive strategy"
             )
+        assert isinstance(creature, HealCapability)
         print(creature.attack())
         print(creature.heal())
