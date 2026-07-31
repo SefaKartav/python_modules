@@ -102,10 +102,14 @@ class LogProcessor(DataProcessor):
 
         if isinstance(data, list):
             for item in data:
-                self._queue += [(self._rank_counter, str(item))]
+                formatted_log = (f"{item['log_level']}: "
+                                 f"{item['log_message']}")
+                self._queue += [(self._rank_counter, formatted_log)]
                 self._rank_counter += 1
         else:
-            self._queue += [(self._rank_counter, str(data))]
+            formatted_log = (f"{data['log_level']}: "
+                             f"{data['log_message']}")
+            self._queue += [(self._rank_counter, formatted_log)]
             self._rank_counter += 1
 
 
