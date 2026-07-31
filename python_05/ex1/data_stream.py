@@ -3,7 +3,7 @@ import typing
 
 
 class DataProcessor(abc.ABC):
-    def __init__(self):
+    def __init__(self) -> None:
         self._queue: list[tuple[int, str]] = []
         self._rank_counter: int = 0
 
@@ -67,8 +67,6 @@ class TextProcessor(DataProcessor):
 
         if isinstance(data, list):
             for item in data:
-                formatted_log = (f"{item['log_level']}: "
-                                 f"{item['log_message']}")
                 self._queue += [(self._rank_counter, str(item))]
                 self._rank_counter += 1
 
@@ -116,7 +114,7 @@ class LogProcessor(DataProcessor):
 
 
 class DataStream:
-    def __init__(self):
+    def __init__(self) -> None:
         self._processors: list[DataProcessor] = []
 
     def register_processor(self, proc: DataProcessor) -> None:

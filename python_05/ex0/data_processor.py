@@ -3,7 +3,7 @@ import typing
 
 
 class DataProcessor(abc.ABC):
-    def __init__(self):
+    def __init__(self) -> None:
         self._queue: list[tuple[int, str]] = []
         self._rank_counter: int = 0
 
