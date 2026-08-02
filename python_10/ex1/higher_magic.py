@@ -29,10 +29,13 @@ def spell_sequence(spells: list[Callable]) -> Callable:
 
 if __name__ == "__main__":
     def fireball(target: str, power: int) -> str:
-        return f"Fireball hits {target}"
+        return f"Fireball hits {target} for {power} power"
 
     def heal(target: str, power: int) -> str:
-        return f"Heals {target}"
+        return f"Heals {target} for {power} power"
+
+    def is_strong_enough(target: str, power: int) -> bool:
+        return power >= 20
 
     print("Testing spell combiner...")
     combined = spell_combiner(fireball, heal)
@@ -40,4 +43,21 @@ if __name__ == "__main__":
     print(f"Combined spell result: {res[0]}, {res[1]}")
 
     print("\nTesting power amplifier...")
-    print("Original: 10, Amplified: 30")
+    combined1 = power_amplifier(fireball, 3)
+    res1 = combined1("Dragon", 10)
+    print(res1)
+
+    print("\nTesting conditional caster - True")
+    combined2 = conditional_caster(is_strong_enough, heal)
+    res2 = combined2("Dragon", 30)
+    print(res2)
+
+    print("\nTesting conditional caster - False")
+    combined3 = conditional_caster(is_strong_enough, heal)
+    res3 = combined3("Dragon", 10)
+    print(res3)
+
+    print("\nTesting spell sequence")
+    combined4 = spell_sequence([fireball, heal, fireball])
+    res4 = combined4("Dragon", 15)
+    print(res4)
