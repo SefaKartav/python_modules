@@ -11,10 +11,10 @@ def spell_timer(func: Callable) -> Callable:
         start_time = time.perf_counter()
         result = func(*args, **kwargs)
         end_time = time.perf_counter()
-        
+
         print(f"Spell completed in {end_time - start_time:.3f} seconds")
         return result
-        
+
     return wrapper
 
 
@@ -28,10 +28,10 @@ def power_validator(min_power: int) -> Callable:
                     if isinstance(arg, int):
                         power = arg
                         break
-                        
+
             if power is None or power < min_power:
                 return "Insufficient power for this spell"
-                
+
             return func(*args, **kwargs)
         return wrapper
     return decorator
@@ -46,9 +46,12 @@ def retry_spell(max_attempts: int) -> Callable:
                     return func(*args, **kwargs)
                 except Exception:
                     if attempt < max_attempts:
-                        print(f"Spell failed, retrying... (attempt {attempt}/{max_attempts})")
+                        print(f"Spell failed, "
+                              f"retrying... (attempt "
+                              f"{attempt}/{max_attempts})")
                     else:
-                        return f"Spell casting failed after {max_attempts} attempts"
+                        return (f"Spell casting failed "
+                                f"after {max_attempts} attempts")
             return None
         return wrapper
     return decorator
@@ -68,6 +71,7 @@ class MageGuild:
 
 if __name__ == "__main__":
     print("Testing spell timer...")
+
     @spell_timer
     def fireball() -> str:
         time.sleep(0.1)
@@ -76,24 +80,25 @@ if __name__ == "__main__":
     print(fireball())
 
     print("\nTesting retrying spell...")
+
     @retry_spell(max_attempts=3)
     def unstable_spell() -> str:
         raise ValueError("Boom")
 
     print(unstable_spell())
-    
+
     @retry_spell(max_attempts=3)
     def waaaa_spell() -> str:
         return "Waaaaaaagh spelled !"
-        
+
     print(waaaa_spell())
 
     print("\nTesting MageGuild...")
     guild = MageGuild()
-    
+
     print(MageGuild.validate_mage_name("Gandalf"))
     print(MageGuild.validate_mage_name("X"))
-    
+
     print(guild.cast_spell("Lightning", power=15))
-    
+
     print(guild.cast_spell("Fireball", power=5))
