@@ -70,8 +70,8 @@ class MageGuild:
 
 
 if __name__ == "__main__":
+    print("===============================================")
     print("Testing spell timer...")
-
     @spell_timer
     def fireball() -> str:
         time.sleep(0.1)
@@ -79,8 +79,19 @@ if __name__ == "__main__":
 
     print(fireball())
 
-    print("\nTesting retrying spell...")
+    print("===============================================")
+    print("\nTesting power validator...")
+    @power_validator(min_power=20)
+    def flexible_spell(*args: Any, **kwargs: Any) -> str:
+        return "BOOM, successfully"
 
+    print(f"Test 1: ", flexible_spell("Target1", power=50))
+    print(f"Test 2: ", flexible_spell("Target2", 30, "ExtraArg"))
+    print("Test 3 (Missing):", flexible_spell("Target3", "NoNumbersHere"))
+    print("Test 4 (Insufficient):", flexible_spell("Target4", power=10))
+
+    print("===============================================")
+    print("\nTesting retrying spell...")
     @retry_spell(max_attempts=3)
     def unstable_spell() -> str:
         raise ValueError("Boom")
@@ -93,6 +104,7 @@ if __name__ == "__main__":
 
     print(waaaa_spell())
 
+    print("===============================================")
     print("\nTesting MageGuild...")
     guild = MageGuild()
 
