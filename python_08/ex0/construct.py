@@ -2,10 +2,12 @@ import sys
 import os
 import site
 
+
 def is_virtual_env() -> bool:
     return sys.prefix != getattr(sys, "base_prefix", sys.prefix)
 
-def print_warning() -> str:
+
+def print_warning() -> None:
     print("MATRIX STATUS: You're still plugged in")
     print(f"Current Python: {sys.executable}")
     print("Virtual Environment: None detected")
@@ -16,6 +18,7 @@ def print_warning() -> str:
     print("source matrix_env/bin/activate # On Unix")
     print("matrix_env\\Scripts\\activate # On Windows")
     print("Then run this program again.")
+
 
 def print_venv_success() -> None:
     venv_name: str = os.path.basename(sys.prefix)
