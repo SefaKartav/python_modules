@@ -37,8 +37,8 @@ def analyze_matrix() -> None:
     data: np.ndarray = np.random.rand(1000, 2)
     df: pd.DataFrame = pd.DataFrame(data, columns=["X_Coord", "Y_Coord"])
     print("Generating visualization...")
-    plt.figure(figsize=(8, 6))
-    plt.scatter(df["X_Coord"], df["Y_Coord"], color='green', alpha=0.5)
+    plt.figure(figsize=(10, 8))
+    plt.hexbin(df["X_Coord"], df["Y_Coord"], gridsize=25, cmap='RdPu')
     plt.title("Matrix Anomaly Detection")
     filename: str = "matrix_analysis.png"
     plt.savefig(filename)
