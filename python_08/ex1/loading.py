@@ -1,6 +1,7 @@
 import sys
 import importlib
 
+
 def check_library() -> bool:
     packages: dict[str, str] = {
         "numpy": "Numeric computation ready",
@@ -27,7 +28,7 @@ def check_library() -> bool:
 
 def analyze_matrix() -> None:
     import numpy as np
-    import pandas as pd
+    import pandas as pd  # type: ignore
     import matplotlib.pyplot as plt
 
     print("\nAnalyzing Matrix data...")
